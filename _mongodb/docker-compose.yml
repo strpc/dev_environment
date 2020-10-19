@@ -1,0 +1,11 @@
+version: "3.6"
+services:
+    mongodb:
+        image: mongo
+        container_name: mongo_dev
+        restart: always
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+            - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+        ports:
+            - 27017:27017

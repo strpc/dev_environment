@@ -1,0 +1,16 @@
+version: '2'
+services:
+  redis-cluster:
+    environment:
+     IP: ${REDIS_CLUSTER_IP}
+     SENTINEL: ${REDIS_USE_SENTINEL}
+     STANDALONE: ${REDIS_USE_STANDALONE}
+    build:
+      context: .
+      args:
+        redis_version: '6.0.8'
+    hostname: server
+    container_name: docker-redis-cluster_dev
+    ports:
+      - '7000-7050:7000-7050'
+      - '5000-5010:5000-5010'

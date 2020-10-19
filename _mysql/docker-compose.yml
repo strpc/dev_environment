@@ -1,0 +1,16 @@
+version: "3.6"
+services:
+    mysql:
+        image: mysql:$MYSQL_VERSION
+        container_name: mysql_dev
+        hostname: mysql
+        restart: always
+        ports:
+            - 3306:3306
+        environment:
+            - MYSQL_USER=$MYSQL_USER
+            - MYSQL_PASSWORD=$MYSQL_PASSWORD
+            - MYSQL_ALLOW_EMPTY_PASSWORD=pass
+            - MYSQL_DATABASE=$MYSQL_DATABASE
+        volumes:
+            - ./mysql_dump:/docker-entrypoint-initdb.d/

@@ -1,0 +1,17 @@
+version: "3.6"
+services:
+    ftp:
+        image: fauria/vsftpd
+        container_name: ftp-vsftpd_dev
+        restart: always
+        hostname: ftp
+        ports:
+            - 21100-21110:21100-21110
+            - 20-21:20-21
+        environment:
+            - FTP_USER=$FTP_USER
+            - FTP_PASS=$FTP_PASSWORD
+            - PASV_ADDRESS=127.0.0.1
+            - PASV_MIN_PORT=21100
+            - PASV_MAX_PORT=21110
+            - PASV_ADDR_RESOLVE=True
