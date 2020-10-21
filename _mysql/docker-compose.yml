@@ -13,4 +13,4 @@ services:
             - MYSQL_ALLOW_EMPTY_PASSWORD=pass
             - MYSQL_DATABASE=$MYSQL_DATABASE
         volumes:
-            - ./mysql_dump:/docker-entrypoint-initdb.d/
+            - ./$MYSQL_DIR_DUMP:/docker-entrypoint-initdb.d/
