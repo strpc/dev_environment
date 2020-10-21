@@ -63,6 +63,8 @@ show_all:
 	@echo "make minio_down - down Minio(S3)"
 	@echo "make postgres - run PostSQL"
 	@echo "make postgres_down - down PostSQL"
+	@echo "make attach c=mysql_dev - show log in live"
+	@echo "make connect c=mysql_dev - enter inside container"
 
 
 clickhouse:
@@ -211,3 +213,9 @@ postgres:
 
 postgres_down:
 	$(_POSTGRES_CMD) down
+
+attach:
+	docker container logs -f $(c)
+
+connect:
+	docker exec -it $(c) su
