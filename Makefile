@@ -47,7 +47,7 @@ _CH_DOCKERCOMPOSE_CMD = export CLICKHOUSE_VERSION=$(CLICKHOUSE_VERSION) && \
 	docker-compose -f $(_CH_DC_FILE)
 
 clickhouse:
-	@-sed "s/<password><\/password>/<password>$(CLICKHOUSE_PASSWORD)<\/password>/" $(_CH_DIR)/users_template.xml | tee $(_CH_DIR)/users.xml
+	-@sed "s/<password><\/password>/<password>$(CLICKHOUSE_PASSWORD)<\/password>/" $(_CH_DIR)/users_template.xml > $(_CH_DIR)/users.xml
 	$(_CH_DOCKERCOMPOSE_CMD) up -d
 	@echo
 	@echo "-----------------------------"
