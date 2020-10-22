@@ -12,3 +12,4 @@ services:
                 hard: 262144
         volumes:
             - ./users.xml:/etc/clickhouse-server/users.xml
+            - ./clickhouse_dump:/docker-entrypoint-initdb.d/
