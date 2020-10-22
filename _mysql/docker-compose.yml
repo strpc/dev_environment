@@ -2,7 +2,7 @@ version: "3.6"
 services:
     mysql:
         image: mysql:$MYSQL_VERSION
-        container_name: mysql_dev
+        container_name: $MYSQL_CONTAINER_NAME
         restart: always
         ports:
             - $MYSQL_PORT:3306

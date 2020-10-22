@@ -10,7 +10,7 @@ services:
       args:
         redis_version: '6.0.8'
     hostname: server
-    container_name: docker-redis-cluster_dev
+    container_name: $REDIS_CLUSTER_CONTAINER_NAME
     ports:
       - '7000-7050:7000-7050'
       - '5000-5010:5000-5010'

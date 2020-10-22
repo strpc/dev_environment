@@ -2,7 +2,7 @@ version: "3.6"
 services:
     clickhouse:
         image: yandex/clickhouse-server:$CLICKHOUSE_VERSION
-        container_name: clickhouse_dev
+        container_name: $CLICKHOUSE_CONTAINER_NAME
         restart: always
         ports:
             - $CLICKHOUSE_PORT:8123

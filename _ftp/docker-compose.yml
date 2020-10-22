@@ -1,8 +1,8 @@
 version: "3.6"
 services:
     ftp:
-        image: fauria/vsftpd
-        container_name: ftp-vsftpd_dev
+        image: fauria/vsftpd:$FTP_VERSION
+        container_name: $FTP_CONTAINER_NAME
         restart: always
         hostname: ftp
         ports:

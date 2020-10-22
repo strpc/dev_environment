@@ -2,7 +2,7 @@ version: "3.6"
 services:
     minio:
         image: minio/minio:$MINIO_VERSION
-        container_name: minio_dev
+        container_name: $MINIO_CONTAINER_NAME
         restart: always
         ports:
             - $MINIO_PORT:9000

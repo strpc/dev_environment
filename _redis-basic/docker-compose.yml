@@ -2,7 +2,7 @@ version: "3.6"
 services:
     redis:
         image: redis:$REDIS_BASIC_VERSION
-        container_name: redis_dev
+        container_name: $REDIS_BASIC_CONTAINER_NAME
         restart: always
         ports:
             - $REDIS_BASIC_PORT:6379
