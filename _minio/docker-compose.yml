@@ -1,10 +1,11 @@
 version: "3.6"
 services:
     minio:
-        image: minio/minio
+        image: minio/minio:$MINIO_VERSION
         container_name: minio_dev
+        restart: always
         ports:
-            - 9000:9000
+            - $MINIO_PORT:9000
         environment:
             - MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY
             - MINIO_SECRET_KEY=$MINIO_SECRET_KEY

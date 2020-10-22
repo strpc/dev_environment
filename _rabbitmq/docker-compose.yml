@@ -1,12 +1,12 @@
 version: "3.6"
 services:
     rabbitmq:
-        image: rabbitmq:3-management
+        image: rabbitmq:$RABBITMQ_VERSION
         container_name: rabbimq_dev
         restart: always
         ports:
-            - 5672:5672
-            - 8080:15672
+            - $RABBITMQ_PORT:5672
+            - $RABBITMQ_PORT_WEB:15672
         environment:
             - RABBITMQ_DEFAULT_USER=$RABBITMQ_USER
             - RABBITMQ_DEFAULT_PASS=$RABBITMQ_PASSWORD

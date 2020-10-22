@@ -3,10 +3,9 @@ services:
     mysql:
         image: mysql:$MYSQL_VERSION
         container_name: mysql_dev
-        hostname: mysql
         restart: always
         ports:
-            - 3306:3306
+            - $MYSQL_PORT:3306
         environment:
             - MYSQL_USER=$MYSQL_USER
             - MYSQL_PASSWORD=$MYSQL_PASSWORD

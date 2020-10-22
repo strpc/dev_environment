@@ -1,11 +1,11 @@
 version: "3.6"
 services:
     clickhouse:
-        image: yandex/clickhouse-server
+        image: yandex/clickhouse-server:$CLICKHOUSE_VERSION
         container_name: clickhouse_dev
         restart: always
         ports:
-            - 8123:8123
+            - $CLICKHOUSE_PORT:8123
         ulimits:
             nofile:
                 soft: 262144

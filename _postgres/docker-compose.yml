@@ -1,10 +1,11 @@
 version: "3.6"
 services:
     postgresql:
-        image: postgres
+        image: postgres:$POSTGRES_VERSION
         container_name: postgres_dev
+        restart: always
         ports:
-            - 5432:5432
+            - $POSTGRES_PORT:5432
         environment:
             - POSTGRES_USER=$POSTGRES_USER
             - POSTGRES_PASSWORD=$POSTGRES_PASSWORD

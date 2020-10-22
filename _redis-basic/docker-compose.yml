@@ -1,9 +1,10 @@
 version: "3.6"
 services:
     redis:
-        image: redis
+        image: redis:$REDIS_BASIC_VERSION
         container_name: redis_dev
+        restart: always
         ports:
-            - 6379:6379
+            - $REDIS_BASIC_PORT:6379
         restart: always
         command: redis-server --requirepass $REDIS_BASIC_PASSWORD
