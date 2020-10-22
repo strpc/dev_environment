@@ -167,6 +167,7 @@ mysql:
 	export MYSQL_PASSWORD=$(MYSQL_PASSWORD) && \
 	export MYSQL_DATABASE=$(MYSQL_DATABASE) && \
 	export MYSQL_VERSION=$(MYSQL_VERSION) && \
+	export MYSQL_DIR_DUMP=$(MYSQL_DIR_DUMP) && \
 	$(_MYSQL_CMD) up -d
 	@echo
 	@echo "-----------------------------"
