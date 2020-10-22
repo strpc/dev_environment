@@ -6,7 +6,7 @@ Requirements:
 1. [docker](https://docs.docker.com/engine/install/)
 2. [docker-compose](https://docs.docker.com/compose/install/)
 ---
-`make show_all` - view all commands
+`make show_all` - show all commands
 ```bash
 enter:
 
@@ -37,11 +37,25 @@ enter:
         make logs c=mysql_dev   ->      show log in live
         make enter c=mysql_dev  ->      enter inside container
 ```
+
 ---
 
-example:
+The versions, name of containers, ports, passwords and users variables can be edited in the `vars.env` file.
+
+
+Dirs for dumps(`*.sql`, `*``.sql.gz`, or `*.sh`):
 ```bash
-make rabbitmq
+├── _clickhouse
+│   └── clickhouse_dump
+├── _mysql
+│   └── mysql_dump
+├── _postgres
+│   └── postgres_dump
+```
+---
+example use:
+```bash
+$ make rabbitmq
 -----------------------------
 RabbitMQ: 3-management
 container_name: rabbimq_dev
@@ -51,6 +65,3 @@ username: user
 password: hackme
 -----------------------------
 ```
-
-
-The versions, ports, passwords and users variables can be edited in the `vars.env` file.
