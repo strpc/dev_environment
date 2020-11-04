@@ -44,18 +44,21 @@ _CH_DC_FILE = $(_CH_DIR)/docker-compose.yml
 _CH_DOCKERCOMPOSE_CMD = export CLICKHOUSE_VERSION=$(CLICKHOUSE_VERSION) && \
 	export CLICKHOUSE_CONTAINER_NAME=$(CLICKHOUSE_CONTAINER_NAME) && \
 	export CLICKHOUSE_PORT=$(CLICKHOUSE_PORT) && \
+	export CLICKHOUSE_USER=$(CLICKHOUSE_USER) && \
+	export CLICKHOUSE_PASSWORD=$(CLICKHOUSE_PASSWORD) && \
+	export CLICKHOUSE_DB=$(CLICKHOUSE_DB) && \
 	docker-compose -f $(_CH_DC_FILE)
 
 clickhouse:
-	-@sed "s/<password><\/password>/<password>$(CLICKHOUSE_PASSWORD)<\/password>/" $(_CH_DIR)/users_template.xml > $(_CH_DIR)/users.xml
 	$(_CH_DOCKERCOMPOSE_CMD) up -d
 	@echo
 	@echo "-----------------------------"
 	@echo "clickhouse:$(CLICKHOUSE_VERSION)"
 	@echo "container_name: $(CLICKHOUSE_CONTAINER_NAME)"
 	@echo "url: http://localhost:$(CLICKHOUSE_PORT)"
-	@echo "username: user"
+	@echo "username: $(CLICKHOUSE_USER)"
 	@echo "password: $(CLICKHOUSE_PASSWORD)"
+	@echo "database: $(CLICKHOUSE_DB)"
 	@echo "-----------------------------"
 
 clickhouse_down:

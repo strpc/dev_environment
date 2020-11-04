@@ -4,6 +4,10 @@ services:
         image: yandex/clickhouse-server:$CLICKHOUSE_VERSION
         container_name: $CLICKHOUSE_CONTAINER_NAME
         restart: always
+        environment:
+            - CLICKHOUSE_USER=$CLICKHOUSE_USER
+            - CLICKHOUSE_PASSWORD=$CLICKHOUSE_PASSWORD
+            - CLICKHOUSE_DB=$CLICKHOUSE_DB
         ports:
             - $CLICKHOUSE_PORT:8123
         ulimits:
@@ -11,5 +15,4 @@ services:
                 soft: 262144
                 hard: 262144
         volumes:
-            - ./users.xml:/etc/clickhouse-server/users.xml
             - ./clickhouse_dump:/docker-entrypoint-initdb.d/
