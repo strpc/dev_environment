@@ -43,7 +43,7 @@ enter:
 The versions, name of containers, ports, passwords and users variables can be edited in the `vars.env` file.
 
 
-Dirs for dumps(`*.sql`, `*``.sql.gz`, or `*.sh`):
+Dirs for dumps(`*.sql`, `*.sql.gz`, or `*.sh`):
 ```bash
 ├── _clickhouse
 │   └── clickhouse_dump
