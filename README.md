@@ -40,7 +40,7 @@ enter:
 
 ---
 
-The versions, name of containers, ports, passwords and users variables can be edited in the `vars.env` file.
+The versions, name of containers, ports, passwords and users variables can be edited in the `.env` file.
 
 
 Dirs for dumps(`*.sql`, `*.sql.gz`, or `*.sh`):
