@@ -1,4 +1,4 @@
-include vars.env
+include .env
 
 show_all:
 	-@echo "enter:"
@@ -41,13 +41,7 @@ enter:
 # ClickHouse
 _CH_DIR = _clickhouse
 _CH_DC_FILE = $(_CH_DIR)/docker-compose.yml
-_CH_DOCKERCOMPOSE_CMD = export CLICKHOUSE_VERSION=$(CLICKHOUSE_VERSION) && \
-	export CLICKHOUSE_CONTAINER_NAME=$(CLICKHOUSE_CONTAINER_NAME) && \
-	export CLICKHOUSE_PORT=$(CLICKHOUSE_PORT) && \
-	export CLICKHOUSE_USER=$(CLICKHOUSE_USER) && \
-	export CLICKHOUSE_PASSWORD=$(CLICKHOUSE_PASSWORD) && \
-	export CLICKHOUSE_DB=$(CLICKHOUSE_DB) && \
-	docker-compose -f $(_CH_DC_FILE)
+_CH_DOCKERCOMPOSE_CMD = docker-compose -f $(_CH_DC_FILE)
 
 clickhouse:
 	$(_CH_DOCKERCOMPOSE_CMD) up -d
@@ -69,12 +63,7 @@ clickhouse_down:
 # MongoDB
 _MONGODB_DIR = _mongodb
 _MONGODB_DC_FILE = $(_MONGODB_DIR)/docker-compose.yml
-_MONGODB_CMD = export MONGODB_VERSION=$(MONGODB_VERSION) && \
-	export MONGODB_PORT=$(MONGODB_PORT) && \
-	export MONGODB_CONTAINER_NAME=$(MONGODB_CONTAINER_NAME) && \
-	export MONGODB_USER=$(MONGODB_USER) && \
-	export MONGODB_PASSWORD=$(MONGODB_PASSWORD) && \
-	docker-compose -f $(_MONGODB_DC_FILE)
+_MONGODB_CMD = docker-compose -f $(_MONGODB_DC_FILE)
 
 mongodb:
 	$(_MONGODB_CMD) up -d
@@ -95,14 +84,7 @@ mongodb_down:
 # MySQL
 _MYSQL_DIR = _mysql
 _MYSQL_DC_FILE = $(_MYSQL_DIR)/docker-compose.yml
-_MYSQL_CMD = export MYSQL_VERSION=$(MYSQL_VERSION) && \
-	export MYSQL_CONTAINER_NAME=$(MYSQL_CONTAINER_NAME) && \
-	export MYSQL_PORT=$(MYSQL_PORT) && \
-	export MYSQL_USER=$(MYSQL_USER) && \
-	export MYSQL_PASSWORD=$(MYSQL_PASSWORD) && \
-	export MYSQL_DATABASE=$(MYSQL_DATABASE) && \
-	export MYSQL_DIR_DUMP=$(MYSQL_DIR_DUMP) && \
-	docker-compose -f $(_MYSQL_DC_FILE)
+_MYSQL_CMD = docker-compose -f $(_MYSQL_DC_FILE)
 
 mysql:
 	$(_MYSQL_CMD) up -d
@@ -124,13 +106,7 @@ mysql_down:
 # PostgreSQL
 _POSTGRES_DIR = _postgres
 _POSTGRES_DC_FILE = $(_POSTGRES_DIR)/docker-compose.yml
-_POSTGRES_CMD = export POSTGRES_VERSION=$(POSTGRES_VERSION) && \
-	export POSTGRES_CONTAINER_NAME=$(POSTGRES_CONTAINER_NAME) && \
-	export POSTGRES_PORT=$(POSTGRES_PORT) && \
-	export POSTGRES_USER=$(POSTGRES_USER) && \
-	export POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) && \
-	export POSTGRES_DB=$(POSTGRES_DB) && \
-	docker-compose -f $(_POSTGRES_DC_FILE)
+_POSTGRES_CMD = docker-compose -f $(_POSTGRES_DC_FILE)
 
 postgres:
 	$(_POSTGRES_CMD) up -d
@@ -153,7 +129,6 @@ postgres_down:
 _REDIS_CLUSTER_DIR = _redis-cluster
 _REDIS_CLUSTER_DC_FILE = $(_REDIS_CLUSTER_DIR)/docker-compose.yml
 _REDIS_CLUSTER_CMD = export REDIS_CLUSTER_IP=0.0.0.0 && \
-	export REDIS_CLUSTER_CONTAINER_NAME=$(REDIS_CLUSTER_CONTAINER_NAME) && \
 	docker-compose -f $(_REDIS_CLUSTER_DC_FILE)
 
 redis_cluster:
@@ -177,11 +152,7 @@ redis_cluster_down:
 # Redis Basic
 _REDIS_BASIC_DIR = _redis-basic
 _REDIS_BASIC_DC_FILE = $(_REDIS_BASIC_DIR)/docker-compose.yml
-_REDIS_BASIC_CMD = export REDIS_BASIC_VERSION=$(REDIS_BASIC_VERSION) && \
-	export REDIS_BASIC_CONTAINER_NAME=$(REDIS_BASIC_CONTAINER_NAME) && \
-	export REDIS_BASIC_PORT=$(REDIS_BASIC_PORT) && \
-	export REDIS_BASIC_PASSWORD=$(REDIS_BASIC_PASSWORD) && \
-	docker-compose -f $(_REDIS_BASIC_DC_FILE)
+_REDIS_BASIC_CMD = docker-compose -f $(_REDIS_BASIC_DC_FILE)
 
 redis:
 	$(_REDIS_BASIC_CMD) up -d
@@ -201,13 +172,7 @@ redis_down:
 # RabbitMQ
 _RABBITMQ_DIR = _rabbitmq
 _RABBITMQ_DC_FILE = $(_RABBITMQ_DIR)/docker-compose.yml
-_RABBITMQ_CMD = export RABBITMQ_VERSION=$(RABBITMQ_VERSION) && \
-	export RABBITMQ_PORT=$(RABBITMQ_PORT) && \
-	export RABBITMQ_CONTAINER_NAME=$(RABBITMQ_CONTAINER_NAME) && \
-	export RABBITMQ_PORT_WEB=$(RABBITMQ_PORT_WEB) && \
-	export RABBITMQ_USER=$(RABBITMQ_USER) && \
-	export RABBITMQ_PASSWORD=$(RABBITMQ_PASSWORD) && \
-	docker-compose -f $(_RABBITMQ_DC_FILE)
+_RABBITMQ_CMD = docker-compose -f $(_RABBITMQ_DC_FILE)
 
 rabbitmq:
 	$(_RABBITMQ_CMD) up -d
@@ -229,11 +194,7 @@ rabbitmq_down:
 # FTP
 _FTP_DIR = _ftp
 _FTP_DC_FILE = $(_FTP_DIR)/docker-compose.yml
-_FTP_CMD = export FTP_USER=$(FTP_USER) && \
-	export FTP_VERSION=$(FTP_VERSION) && \
-	export FTP_CONTAINER_NAME=$(FTP_CONTAINER_NAME) && \
-	export FTP_PASSWORD=$(FTP_PASSWORD) && \
-	docker-compose -f $(_FTP_DC_FILE)
+_FTP_CMD = docker-compose -f $(_FTP_DC_FILE)
 
 ftp:
 	$(_FTP_CMD) up -d
@@ -254,13 +215,7 @@ ftp_down:
 # Minio(S3)
 _MINIO_DIR = _minio
 _MINIO_DC_FILE = $(_MINIO_DIR)/docker-compose.yml
-_MINIO_CMD = MINIO_VERSION=$(MINIO_VERSION) && \
-	export MINIO_VERSION=$(MINIO_VERSION) && \
-	export MINIO_CONTAINER_NAME=$(MINIO_CONTAINER_NAME) && \
-	export MINIO_PORT=$(MINIO_PORT) && \
-	export MINIO_ACCESS_KEY=$(MINIO_ACCESS_KEY) && \
-	export MINIO_SECRET_KEY=$(MINIO_SECRET_KEY) && \
-	docker-compose -f $(_MINIO_DC_FILE)
+_MINIO_CMD = docker-compose -f $(_MINIO_DC_FILE)
 
 minio:
 	$(_MINIO_CMD) up -d
