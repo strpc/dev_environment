@@ -44,6 +44,7 @@ _CH_DC_FILE = $(_CH_DIR)/docker-compose.yml
 _CH_DOCKERCOMPOSE_CMD = docker-compose -f $(_CH_DC_FILE)
 
 clickhouse:
+	-@sed "s/<password><\/password>/<password>$(CLICKHOUSE_PASSWORD)<\/password>/" $(_CH_DIR)/users_template.xml > $(_CH_DIR)/users.xml
 	$(_CH_DOCKERCOMPOSE_CMD) up -d
 	@echo
 	@echo "-----------------------------"
@@ -205,6 +206,7 @@ ftp:
 	@echo "container_name: $(FTP_CONTAINER_NAME)"
 	@echo "username: $(FTP_USER)"
 	@echo "password: $(FTP_PASSWORD)"
+	@echo "ftp dir: ./$(_FTP_DIR)/ftp_dir"
 	@echo "-----------------------------"
 
 ftp_down:
