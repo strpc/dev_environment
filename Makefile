@@ -20,6 +20,7 @@ show_all:
 	-@echo ""
 	-@echo "\tmake mysql\t\t-> \trun MySQL:$(MYSQL_VERSION) on port $(MYSQL_PORT)"
 	-@echo "\tmake mysql_down\t\t-> \tdown MySQL"
+	-@echo "\tmake mysql_query_log\t-> \tshow log query in live"
 	-@echo ""
 	-@echo "\tmake minio\t\t-> \trun Minio(S3):$(MINIO_VERSION) on port $(MINIO_PORT)"
 	-@echo "\tmake minio_down\t\t-> \tdown Minio(S3)"
@@ -101,6 +102,10 @@ mysql:
 
 mysql_down:
 	$(_MYSQL_CMD) down
+
+
+mysql_query_log:
+	docker exec -it $(MYSQL_CONTAINER_NAME) tail -f /var/log/mysql/mysql.log
 
 
 # -----------------------------
@@ -206,7 +211,7 @@ ftp:
 	@echo "container_name: $(FTP_CONTAINER_NAME)"
 	@echo "username: $(FTP_USER)"
 	@echo "password: $(FTP_PASSWORD)"
-	@echo "ftp dir: ./$(_FTP_DIR)/ftp_dir"
+	@echo "ftp dir: $(FTP_DIR)"
 	@echo "-----------------------------"
 
 ftp_down:
