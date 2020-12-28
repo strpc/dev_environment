@@ -15,5 +15,5 @@ services:
             - PASV_MIN_PORT=21100
             - PASV_MAX_PORT=21110
             - PASV_ADDR_RESOLVE=True
-         volumes:
-            - ./ftp_dir:/home/vsftpd/user
+        volumes:
+            - $FTP_DIR:/home/vsftpd/user
