@@ -6,6 +6,18 @@ Requirements:
 1. [docker](https://docs.docker.com/engine/install/)
 2. [docker-compose](https://docs.docker.com/compose/install/)
 ---
+
+Install:
+```shell
+git clone https://github.com/strpc/dev_environment
+cd dev_environment
+cp .env.example .env
+```  
+
+Versions, name of containers, ports, passwords and users variables can be edited in the `.env` file.
+
+---
+
 `make show_all` - show all commands
 ```bash
 enter:
@@ -27,6 +39,7 @@ enter:
 
         make mysql              ->      run MySQL:5.7 on port 3306
         make mysql_down         ->      down MySQL
+        make mysql_query_log    ->      show log query in live
 
         make minio              ->      run Minio(S3):latest on port 9000
         make minio_down         ->      down Minio(S3)
@@ -40,9 +53,6 @@ enter:
 
 ---
 
-The versions, name of containers, ports, passwords and users variables can be edited in the `.env` file.
-
-
 Dirs for dumps(`*.sql`, `*.sql.gz`, or `*.sh`):
 ```bash
 ├── _clickhouse
@@ -52,8 +62,9 @@ Dirs for dumps(`*.sql`, `*.sql.gz`, or `*.sh`):
 ├── _postgres
 │   └── postgres_dump
 ```
+
 ---
-example use:
+example usage:
 ```bash
 $ make rabbitmq
 -----------------------------
