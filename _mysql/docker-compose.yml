@@ -13,3 +13,4 @@ services:
             - MYSQL_DATABASE=$MYSQL_DATABASE
         volumes:
             - ./$MYSQL_DIR_DUMP:/docker-entrypoint-initdb.d/
+            - ./enable_logs.cnf:/etc/mysql/conf.d/enable_logs.cnf
