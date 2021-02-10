@@ -2,7 +2,7 @@ version: "3.8"
 services:
     postgresql:
         image: postgres:$POSTGRES_VERSION
-        container_name: postgres_dev
+        container_name: $POSTGRES_CONTAINER_NAME
         restart: always
         ports:
             - $POSTGRES_PORT:5432
