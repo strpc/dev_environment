@@ -240,3 +240,43 @@ minio:
 
 minio_down:
 	$(_MINIO_CMD) down
+
+
+# -----------------------------
+# NATS
+_NATS_DIR = _nats
+_NATS_DC_FILE = $(_NATS_DIR)/docker-compose.yml
+_NATS_CMD = docker-compose -f $(_NATS_DC_FILE)
+
+nats:
+	$(_NATS_CMD) up -d
+	echo
+	echo "-----------------------------"
+	echo "NATS:$(NATS_VERSION)"
+	echo "container_name: $(NATS_CONTAINER_NAME)"
+	echo "host: localhost:$(NATS_PORT)"
+	echo "management: localhost:$(NATS_MANAGEMENT_PORT)"
+	echo "-----------------------------"
+
+nats_down:
+	$(_NATS_CMD) down
+
+
+# -----------------------------
+# NATS-CLUSTER
+_NATS_CLUSTER_DIR = _nats_cluster
+_NATS_CLUSTER_DC_FILE = $(_NATS_CLUSTER_DIR)/docker-compose.yml
+_NATS_CLUSTER_CMD = docker-compose -f $(_NATS_CLUSTER_DC_FILE)
+
+nats_cluster:
+	$(_NATS_CLUSTER_CMD) up -d
+	echo
+	echo "-----------------------------"
+	echo "NATS:$(NATS_VERSION)"
+	echo "container_name: $(NATS_CONTAINER_NAME)_master"
+	echo "host: localhost:$(NATS_PORT)"
+	echo "management: localhost:$(NATS_MANAGEMENT_PORT)"
+	echo "-----------------------------"
+
+nats_cluster_down:
+	$(_NATS_CLUSTER_CMD) down
