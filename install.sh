@@ -41,7 +41,7 @@ then
   rm -rf "${install_path}"/.dev_environment
 fi
 git clone https://github.com/Kuzyashin/dev_environment.git "${install_path}/.dev_environment"
-cd "${install_path}"/dev_environment || exit
+cd "${install_path}"/.dev_environment || exit
 cp .env.example .env
 sed "s~install_path~${install_path}/.dev_environment~g" .dev_aliases.sh > "${install_path}"/.dev_aliases.sh
 
