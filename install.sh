@@ -36,29 +36,30 @@ else
   echo "Will use ${install_path}"
 fi
 
-if [ -d "${install_path}/dev_environment" ]
+if [ -d "${install_path}/.dev_environment" ]
 then
-  rm -rf "${install_path}"/dev_environment
+  rm -rf "${install_path}"/.dev_environment
 fi
-git clone https://github.com/Kuzyashin/dev_environment.git "${install_path}/dev_environment"
+git clone https://github.com/Kuzyashin/dev_environment.git "${install_path}/.dev_environment"
 cd "${install_path}"/dev_environment || exit
 cp .env.example .env
-sed "s~install_path~${install_path}/dev_environment~g" .dev_aliases.sh > "${install_path}"/.dev_aliases.sh
+sed "s~install_path~${install_path}/.dev_environment~g" .dev_aliases.sh > "${install_path}"/.dev_aliases.sh
 
 if [ -f "${HOME}/.zshrc" ]
 then
    echo "Will create aliases for ZSH"
-   FILE="${HOME}/.zshrc"
-   echo "SOURCE ${install_path}/.dev_aliases.sh" >> FILE
+   echo "source ${install_path}/.dev_aliases.sh" >> "${HOME}"/.zshrc
    echo "Aliases created"
+   source "${HOME}"/.zshrc
 elif [ -f "${HOME}/.bashrc" ]
 then
    echo "Will create aliases for BASH"
-   FILE="${HOME}/.bashrc"
-   echo "SOURCE ${install_path}/.dev_aliases.sh" >> FILE
+   echo "source ${install_path}/.dev_aliases.sh" >> "${HOME}"/.bashrc
    echo "Aliases created"
+   source "${HOME}"/.bashrc
 else
    echo "Cannot install in auto mode. PLZ mke aliases yourself"
    exit;
 fi
 
+echo "Installation Finished"
