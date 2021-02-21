@@ -46,6 +46,16 @@ enter:
 
         make postgres           ->      run PostgreSQL:latest on port 5432
         make postgres_down      ->      down PostgreSQL
+        
+        make nats               ->      run NATS:latest on port 4222
+        make nats_down          ->      down NATS
+
+        make nats_cluster       ->      run NATS Cluster:latest on port 4222
+        make nats_cluster_down  ->      down NATS Cluster
+
+        make kafka              ->      run Kafka:latest on port 9094
+        make kafka_down         ->      down Kafka
+
 
         make logs c=mysql_dev   ->      show log in live
         make enter c=mysql_dev  ->      enter inside container
