@@ -43,15 +43,15 @@ fi
 git clone https://github.com/Kuzyashin/dev_environment.git "${install_path}/dev_environment"
 cd "${install_path}"/dev_environment || exit
 cp .env.example .env
-sed "s~@install_path~${install_path}~g" .dev_aliases.sh > "${install_path}"/.dev_aliases.sh
+sed "s~install_path~${install_path}~g" .dev_aliases.sh > "${install_path}"/.dev_aliases.sh
 
-if [ -n "$ZSH_VERSION" ]
+if [ -f "${HOME}/.zshrc" ]
 then
    echo "Will create aliases for ZSH"
    FILE="${HOME}/.zshrc"
    echo "SOURCE ${install_path}/.dev_aliases.sh" >> FILE
    echo "Aliases created"
-elif [ -n "$BASH_VERSION" ]
+elif [ -f "${HOME}/.bashrc" ]
 then
    echo "Will create aliases for BASH"
    FILE="${HOME}/.bashrc"
