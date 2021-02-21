@@ -1,6 +1,3 @@
-#!/bin/bash
-
-
 alias dev_start_clickhouse="cd install_path && make clickhouse && cd -"
 alias dev_stop_clickhouse="cd install_path && make clickhouse_down && cd -"
 
