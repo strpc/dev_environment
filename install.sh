@@ -41,7 +41,7 @@ then
   rm -rf "${install_path}"/.dev_environment
 fi
 
-git clone https://github.com/strpc/dev_environment.git "${install_path}/.dev_environment"
+git clone https://github.com/strpc/dev_environment.git "${install_path}/.dev_environment" &>/dev/null
 
 cd "${install_path}"/.dev_environment
 cp .env.example .env
