@@ -20,14 +20,17 @@ alias dev_stop_redis="cd install_path && make redis_down && cd -"
 alias dev_start_rabbitmq="cd install_path && make rabbitmq && cd -"
 alias dev_stop_rabbitmq="cd install_path && make rabbitmq_down && cd -"
 
-alias dev_start_ftp="cd install_path && make ftp && cd -"
-alias dev_stop_ftp="cd install_path && make ftp_down && cd -"
-
-alias dev_start_nats="cd install_path && make nats && cd -"
-alias dev_stop_nats="cd install_path && make nats_down && cd -"
+alias dev_start_kafka="cd install_path && make kafka && cd -"
+alias dev_stop_kafka="cd install_path && make kafka_down && cd -"
 
 alias dev_start_nats_cluster="cd install_path && make nats_cluster && cd -"
 alias dev_stop_nats_cluster="cd install_path && make nats_cluster_down && cd -"
 
-alias dev_start_kafka="cd install_path && make kafka && cd -"
-alias dev_stop_kafka="cd install_path && make kafka_down && cd -"
+alias dev_start_nats="cd install_path && make nats && cd -"
+alias dev_stop_nats="cd install_path && make nats_down && cd -"
+
+alias dev_start_ftp="cd install_path && make ftp && cd -"
+alias dev_stop_ftp="cd install_path && make ftp_down && cd -"
+
+alias dev_start_minio="cd install_path && make minio && cd -"
+alias dev_stop_minio="cd install_path && make minio_down && cd -"
