@@ -8,14 +8,14 @@ Requirements:
 3. [docker-compose](https://docs.docker.com/compose/install/)
 ---
 
-Install to [alias](./.dev_aliases.sh):
+Install with [alias](./.dev_aliases.sh)-mode:
 ```shell
 curl -s "https://raw.githubusercontent.com/strpc/dev_environment/master/install.sh" | bash
 ```
 _or | bash /dev/stdin -p /and/some/path/to/install_
 
 
-Manual install:
+Install for manual use:
 ```shell
 git clone https://github.com/strpc/dev_environment
 cd dev_environment
