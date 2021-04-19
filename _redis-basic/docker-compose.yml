@@ -6,5 +6,4 @@ services:
         restart: always
         ports:
             - $REDIS_BASIC_PORT:6379
-        restart: always
         command: redis-server --requirepass $REDIS_BASIC_PASSWORD

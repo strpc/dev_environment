@@ -31,6 +31,15 @@ show_all:
 	echo "\tmake postgres\t\t-> \trun PostgreSQL:$(POSTGRES_VERSION) on port $(POSTGRES_PORT)"
 	echo "\tmake postgres_down\t-> \tdown PostgreSQL"
 	echo ""
+	echo "\tmake nats\t\t-> \trun NATS:$(NATS_VERSION) on port $(NATS_PORT)"
+	echo "\tmake nats_down\t\t-> \tdown NATS"
+	echo ""
+	echo "\tmake nats_cluster\t-> \trun NATS Cluster:$(NATS_VERSION) on port $(NATS_PORT)"
+	echo "\tmake nats_cluster_down\t-> \tdown NATS Cluster"
+	echo ""
+	echo "\tmake kafka\t\t-> \trun Kafka:$(KAFKA_VERSION) on port $(KAFKA_PORT)"
+	echo "\tmake kafka_down\t\t-> \tdown Kafka"
+	echo ""
 	echo "\tmake logs c=mysql_dev\t-> \tshow log in live"
 	echo "\tmake enter c=mysql_dev\t-> \tenter inside container"
 
@@ -240,3 +249,65 @@ minio:
 
 minio_down:
 	$(_MINIO_CMD) down
+
+
+# -----------------------------
+# NATS
+_NATS_DIR = _nats
+_NATS_DC_FILE = $(_NATS_DIR)/docker-compose.yml
+_NATS_CMD = docker-compose -f $(_NATS_DC_FILE)
+
+nats:
+	$(_NATS_CMD) up -d
+	echo
+	echo "-----------------------------"
+	echo "NATS:$(NATS_VERSION)"
+	echo "container_name: $(NATS_CONTAINER_NAME)"
+	echo "host: localhost:$(NATS_PORT)"
+	echo "management: localhost:$(NATS_MANAGEMENT_PORT)"
+	echo "-----------------------------"
+
+nats_down:
+	$(_NATS_CMD) down
+
+
+# -----------------------------
+# NATS-CLUSTER
+_NATS_CLUSTER_DIR = _nats_cluster
+_NATS_CLUSTER_DC_FILE = $(_NATS_CLUSTER_DIR)/docker-compose.yml
+_NATS_CLUSTER_CMD = docker-compose -f $(_NATS_CLUSTER_DC_FILE)
+
+nats_cluster:
+	$(_NATS_CLUSTER_CMD) up -d
+	echo
+	echo "-----------------------------"
+	echo "NATS:$(NATS_VERSION)"
+	echo "container_name: $(NATS_CONTAINER_NAME)_master"
+	echo "host: localhost:$(NATS_PORT)"
+	echo "management: localhost:$(NATS_MANAGEMENT_PORT)"
+	echo "-----------------------------"
+
+nats_cluster_down:
+	$(_NATS_CLUSTER_CMD) down
+
+
+# -----------------------------
+# KAFKA
+_KAFKA_DIR = _kafka
+_KAFKA_DC_FILE = $(_KAFKA_DIR)/docker-compose.yml
+_KAFKA_CMD = docker-compose -f $(_KAFKA_DC_FILE)
+
+kafka:
+	$(_KAFKA_CMD) up -d
+	echo
+	echo "-----------------------------"
+	echo "KAFKA:$(KAFKA_VERSION)"
+	echo "container_name: $(KAFKA_CONTAINER_NAME)"
+	echo "host: localhost:$(KAFKA_PORT)"
+	echo "ZOOKEEPER:$(ZOOKEEPER_VERSION)"
+	echo "container_name: $(ZOOKEEPER_CONTAINER_NAME)"
+	echo "host: localhost:$(ZOOKEEPER_PORT)"
+	echo "-----------------------------"
+
+kafka_down:
+	$(_KAFKA_CMD) down
