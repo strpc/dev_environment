@@ -1,7 +1,13 @@
 include .env
 
 .SILENT:
+
 .DEFAULT_GOAL := show_all
+
+ENV_FILE = ./.env
+
+export $(shell sed 's/=.*//' .env))
+
 
 show_all:
 	echo "enter:"
@@ -54,7 +60,7 @@ enter:
 # ClickHouse
 _CH_DIR = _clickhouse
 _CH_DC_FILE = $(_CH_DIR)/docker-compose.yml
-_CH_DOCKERCOMPOSE_CMD = docker-compose -f $(_CH_DC_FILE)
+_CH_DOCKERCOMPOSE_CMD = docker-compose -f $(_CH_DC_FILE) --env-file $(ENV_FILE)
 
 clickhouse:
 	sed "s/<password><\/password>/<password>$(CLICKHOUSE_PASSWORD)<\/password>/" $(_CH_DIR)/users_template.xml > $(_CH_DIR)/users.xml
@@ -77,7 +83,7 @@ clickhouse_down:
 # MongoDB
 _MONGODB_DIR = _mongodb
 _MONGODB_DC_FILE = $(_MONGODB_DIR)/docker-compose.yml
-_MONGODB_CMD = docker-compose -f $(_MONGODB_DC_FILE)
+_MONGODB_CMD = docker-compose -f $(_MONGODB_DC_FILE) --env-file $(ENV_FILE)
 
 mongodb:
 	$(_MONGODB_CMD) up -d
@@ -98,7 +104,7 @@ mongodb_down:
 # MySQL
 _MYSQL_DIR = _mysql
 _MYSQL_DC_FILE = $(_MYSQL_DIR)/docker-compose.yml
-_MYSQL_CMD = docker-compose -f $(_MYSQL_DC_FILE)
+_MYSQL_CMD = docker-compose -f $(_MYSQL_DC_FILE) --env-file $(ENV_FILE)
 
 mysql:
 	$(_MYSQL_CMD) up -d
@@ -124,7 +130,7 @@ mysql_query_log:
 # PostgreSQL
 _POSTGRES_DIR = _postgres
 _POSTGRES_DC_FILE = $(_POSTGRES_DIR)/docker-compose.yml
-_POSTGRES_CMD = docker-compose -f $(_POSTGRES_DC_FILE)
+_POSTGRES_CMD = docker-compose -f $(_POSTGRES_DC_FILE) --env-file $(ENV_FILE)
 
 postgres:
 	$(_POSTGRES_CMD) up -d
@@ -147,13 +153,13 @@ postgres_down:
 _REDIS_CLUSTER_DIR = _redis-cluster
 _REDIS_CLUSTER_DC_FILE = $(_REDIS_CLUSTER_DIR)/docker-compose.yml
 _REDIS_CLUSTER_CMD = export REDIS_CLUSTER_IP=0.0.0.0 && \
-	docker-compose -f $(_REDIS_CLUSTER_DC_FILE)
+	docker-compose -f $(_REDIS_CLUSTER_DC_FILE) --env-file $(ENV_FILE)
 
 redis_cluster:
 	$(_REDIS_CLUSTER_CMD) up -d
 	sleep 5
-	export REDIS_CLUSTER_PASSWORD=$(REDIS_CLUSTER_PASSWORD) && \
-	sh $(_REDIS_CLUSTER_DIR)/set_password.sh
+	# export  && \
+	REDIS_CLUSTER_PASSWORD=$(REDIS_CLUSTER_PASSWORD) sh $(_REDIS_CLUSTER_DIR)/set_password.sh
 	echo
 	echo "-----------------------------"
 	echo "Redis Cluster:"
@@ -170,7 +176,7 @@ redis_cluster_down:
 # Redis Basic
 _REDIS_BASIC_DIR = _redis-basic
 _REDIS_BASIC_DC_FILE = $(_REDIS_BASIC_DIR)/docker-compose.yml
-_REDIS_BASIC_CMD = docker-compose -f $(_REDIS_BASIC_DC_FILE)
+_REDIS_BASIC_CMD = docker-compose -f $(_REDIS_BASIC_DC_FILE) --env-file $(ENV_FILE)
 
 redis:
 	$(_REDIS_BASIC_CMD) up -d
@@ -190,7 +196,7 @@ redis_down:
 # RabbitMQ
 _RABBITMQ_DIR = _rabbitmq
 _RABBITMQ_DC_FILE = $(_RABBITMQ_DIR)/docker-compose.yml
-_RABBITMQ_CMD = docker-compose -f $(_RABBITMQ_DC_FILE)
+_RABBITMQ_CMD = docker-compose -f $(_RABBITMQ_DC_FILE) --env-file $(ENV_FILE)
 
 rabbitmq:
 	$(_RABBITMQ_CMD) up -d
@@ -212,7 +218,7 @@ rabbitmq_down:
 # FTP
 _FTP_DIR = _ftp
 _FTP_DC_FILE = $(_FTP_DIR)/docker-compose.yml
-_FTP_CMD = docker-compose -f $(_FTP_DC_FILE)
+_FTP_CMD = docker-compose -f $(_FTP_DC_FILE) --env-file $(ENV_FILE)
 
 ftp:
 	$(_FTP_CMD) up -d
@@ -234,7 +240,7 @@ ftp_down:
 # Minio(S3)
 _MINIO_DIR = _minio
 _MINIO_DC_FILE = $(_MINIO_DIR)/docker-compose.yml
-_MINIO_CMD = docker-compose -f $(_MINIO_DC_FILE)
+_MINIO_CMD = docker-compose -f $(_MINIO_DC_FILE) --env-file $(ENV_FILE)
 
 minio:
 	$(_MINIO_CMD) up -d
@@ -255,7 +261,7 @@ minio_down:
 # NATS
 _NATS_DIR = _nats
 _NATS_DC_FILE = $(_NATS_DIR)/docker-compose.yml
-_NATS_CMD = docker-compose -f $(_NATS_DC_FILE)
+_NATS_CMD = docker-compose -f $(_NATS_DC_FILE) --env-file $(ENV_FILE)
 
 nats:
 	$(_NATS_CMD) up -d
@@ -275,7 +281,7 @@ nats_down:
 # NATS-CLUSTER
 _NATS_CLUSTER_DIR = _nats_cluster
 _NATS_CLUSTER_DC_FILE = $(_NATS_CLUSTER_DIR)/docker-compose.yml
-_NATS_CLUSTER_CMD = docker-compose -f $(_NATS_CLUSTER_DC_FILE)
+_NATS_CLUSTER_CMD = docker-compose -f $(_NATS_CLUSTER_DC_FILE) --env-file $(ENV_FILE)
 
 nats_cluster:
 	$(_NATS_CLUSTER_CMD) up -d
@@ -295,7 +301,7 @@ nats_cluster_down:
 # KAFKA
 _KAFKA_DIR = _kafka
 _KAFKA_DC_FILE = $(_KAFKA_DIR)/docker-compose.yml
-_KAFKA_CMD = docker-compose -f $(_KAFKA_DC_FILE)
+_KAFKA_CMD = docker-compose -f $(_KAFKA_DC_FILE) --env-file $(ENV_FILE)
 
 kafka:
 	$(_KAFKA_CMD) up -d
