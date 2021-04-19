@@ -12,7 +12,7 @@ Install to [alias](./.dev_aliases.sh):
 ```shell
 curl -s "https://raw.githubusercontent.com/strpc/dev_environment/master/install.sh" | bash
 ```
-_or | bash -p /and/some/path/to/install_
+_or | bash /dev/stdin -p /and/some/path/to/install_
 
 
 Manual install:
