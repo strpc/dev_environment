@@ -1,12 +1,12 @@
 version: "3.8"
 services:
     minio:
-        image: minio/minio:$MINIO_VERSION
-        container_name: $MINIO_CONTAINER_NAME
-        restart: always
+        image: minio/minio:${MINIO_VERSION}
+        container_name: ${MINIO_CONTAINER_NAME}
+        restart: unless-stopped
         ports:
             - $MINIO_PORT:9000
         environment:
-            - MINIO_ACCESS_KEY=$MINIO_ACCESS_KEY
-            - MINIO_SECRET_KEY=$MINIO_SECRET_KEY
+            - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+            - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
         command: ["server", "/data"]

@@ -1,9 +1,9 @@
 version: "3.8"
 services:
     redis:
-        image: redis:$REDIS_BASIC_VERSION
-        container_name: $REDIS_BASIC_CONTAINER_NAME
-        restart: always
+        image: redis:${REDIS_BASIC_VERSION}
+        container_name: ${REDIS_BASIC_CONTAINER_NAME}
+        restart: unless-stopped
         ports:
-            - $REDIS_BASIC_PORT:6379
-        command: redis-server --requirepass $REDIS_BASIC_PASSWORD
+            - ${REDIS_BASIC_PORT}:6379
+        command: redis-server --requirepass ${REDIS_BASIC_PASSWORD}

@@ -1,19 +1,19 @@
 version: "3.8"
 services:
     ftp:
-        image: fauria/vsftpd:$FTP_VERSION
-        container_name: $FTP_CONTAINER_NAME
-        restart: always
+        image: fauria/vsftpd:${FTP_VERSION}
+        container_name: ${FTP_CONTAINER_NAME}
+        restart: unless-stopped
         hostname: ftp
         ports:
             - 21100-21110:21100-21110
             - 20-21:20-21
         environment:
-            - FTP_USER=$FTP_USER
-            - FTP_PASS=$FTP_PASSWORD
+            - FTP_USER=${FTP_USER}
+            - FTP_PASS=${FTP_PASSWORD}
             - PASV_ADDRESS=127.0.0.1
             - PASV_MIN_PORT=21100
             - PASV_MAX_PORT=21110
             - PASV_ADDR_RESOLVE=True
         volumes:
-            - $FTP_DIR:/home/vsftpd/user
+            - ${FTP_DIR}:/home/vsftpd/user

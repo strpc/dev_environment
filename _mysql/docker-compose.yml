@@ -1,16 +1,16 @@
 version: "3.8"
 services:
     mysql:
-        image: mysql:$MYSQL_VERSION
-        container_name: $MYSQL_CONTAINER_NAME
-        restart: always
+        image: mysql:${MYSQL_VERSION}
+        container_name: ${MYSQL_CONTAINER_NAME}
+        restart: unless-stopped
         ports:
-            - $MYSQL_PORT:3306
+            - ${MYSQL_PORT}:3306
         environment:
-            - MYSQL_USER=$MYSQL_USER
-            - MYSQL_PASSWORD=$MYSQL_PASSWORD
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
             - MYSQL_ALLOW_EMPTY_PASSWORD=pass
-            - MYSQL_DATABASE=$MYSQL_DATABASE
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
         volumes:
-            - ./$MYSQL_DIR_DUMP:/docker-entrypoint-initdb.d/
+            - ./${MYSQL_DIR_DUMP}:/docker-entrypoint-initdb.d/
             - ./enable_logs.cnf:/etc/mysql/conf.d/enable_logs.cnf

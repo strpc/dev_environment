@@ -1,13 +1,18 @@
-version: '3.2'
+version: '3.8'
 services:
   zookeeper_dev:
-    image: wurstmeister/zookeeper:$ZOOKEEPER_VERSION
+    image: wurstmeister/zookeeper:${ZOOKEEPER_VERSION}
+    container_name: ${ZOOKEEPER_CONTAINER_NAME}
+    restart: unless-stopped
     ports:
-      - $ZOOKEEPER_PORT:2181
+      - ${ZOOKEEPER_PORT}:2181
+
   kafka_dev:
-    image: wurstmeister/kafka:$KAFKA_VERSION
+    image: wurstmeister/kafka:${KAFKA_VERSION}
+    container_name: ${KAFKA_CONTAINER_NAME}
+    restart: unless-stopped
     ports:
-      - $KAFKA_PORT:9094
+      - ${KAFKA_PORT}:9094
     environment:
       HOSTNAME_COMMAND: "docker info | grep ^Name: | cut -d' ' -f 2"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181

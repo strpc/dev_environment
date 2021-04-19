@@ -1,9 +1,9 @@
-version: "3.7"
+version: "3.8"
 services:
     nats:
-        image: nats:$NATS_VERSION
-        container_name: nats_dev
-        restart: always
+        image: nats:${NATS_VERSION}
+        container_name: ${NATS_CONTAINER_NAME}
+        restart: unless-stopped
         ports:
-            - $NATS_PORT:4222
-            - $NATS_MANAGEMENT_PORT:8222
+            - ${NATS_PORT}:4222
+            - ${NATS_MANAGEMENT_PORT}:8222

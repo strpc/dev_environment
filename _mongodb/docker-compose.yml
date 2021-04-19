@@ -1,11 +1,11 @@
 version: "3.8"
 services:
     mongodb:
-        image: mongo:$MONGODB_VERSION
-        container_name: $MONGODB_CONTAINER_NAME
-        restart: always
+        image: mongo:${MONGODB_VERSION}
+        restart: unless-stopped
+        container_name: ${MONGODB_CONTAINER_NAME}
         environment:
-            - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
-            - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+            - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
         ports:
-            - $MONGODB_PORT:27017
+            - ${MONGODB_PORT}:27017

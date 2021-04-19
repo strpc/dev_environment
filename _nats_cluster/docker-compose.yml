@@ -1,19 +1,24 @@
-version: "3.7"
+version: "3.8"
 services:
   nats-master:
-    image: nats:$NATS_VERSION
+    image: nats:${NATS_VERSION}
     container_name: nats_dev_master
+    restart: unless-stopped
     ports:
-      - $NATS_MANAGEMENT_PORT:8222
-      - $NATS_PORT:4222
-      - $NATS_CLUSTERING_PORT:6222
+      - ${NATS_MANAGEMENT_PORT}:8222
+      - ${NATS_PORT}:4222
+      - ${NATS_CLUSTERING_PORT}:6222
+
   nats-slave-1:
-    image: nats:$NATS_VERSION
+    image: nats:${NATS_VERSION}
     container_name: nats_dev_slave_1
+    restart: unless-stopped
     command: "--cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats-master:6222"
     depends_on: ["nats-master"]
+
   nats-slave-2:
-    image: nats:$NATS_VERSION
+    image: nats:${NATS_VERSION}
     container_name: nats_dev_slave_2
+    restart: unless-stopped
     command: "--cluster nats://0.0.0.0:6222 --routes=nats://ruser:T0pS3cr3t@nats-master:6222"
     depends_on: ["nats-master"]
