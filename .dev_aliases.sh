@@ -34,3 +34,6 @@ alias dev_stop_ftp="cd install_path && make ftp_down && cd -"
 
 alias dev_start_minio="cd install_path && make minio && cd -"
 alias dev_stop_minio="cd install_path && make minio_down && cd -"
+
+alias dev_start_flower="cd install_path && make flower && cd -"
+alias dev_stop_flower="cd install_path && make flower_down && cd -"
