@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+    flower:
+        image: mher/flower:${FLOWER_VERSION}
+        container_name: ${FLOWER_CONTAINER_NAME}
+        restart: unless-stopped
+        networks:
+            - default
+            - broker
+        ports:
+            - ${FLOWER_PORT}:5555
+        command: ["--broker=${FLOWER_BROKER_URL}"]
+
+
+networks:
+    default:
+    broker:
+        external:
+            name: ${FLOWER_BROKER_NETWORK}

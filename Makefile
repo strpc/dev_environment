@@ -21,6 +21,7 @@ _NATS_ROOT = _nats
 _NATS_CLUSTER_ROOT = _nats_cluster
 _FTP_ROOT = _ftp
 _MINIO_ROOT = _minio
+_FLOWER_ROOT = _flower
 
 
 show_all:
@@ -62,6 +63,9 @@ show_all:
 	@echo ""
 	@echo "\tmake minio\t\t-> \trun Minio(S3):$(MINIO_VERSION) on port $(MINIO_PORT)"
 	@echo "\tmake minio_down\t\t-> \tdown Minio(S3)"
+	@echo ""
+	@echo "\tmake flower\t\t-> \trun Flower:$(FLOWER_VERSION) on port $(FLOWER_PORT)"
+	@echo "\tmake flower_down\t-> \tdown Flower"
 	@echo ""
 	@echo "\tmake logs c=mysql_dev\t-> \tshow log in live"
 	@echo "\tmake enter c=mysql_dev\t-> \tenter inside container"
@@ -157,3 +161,8 @@ minio:
 
 minio_down:
 	$(MAKE) --directory=$(_MINIO_ROOT) minio_down
+
+flower:
+	$(MAKE) --directory=$(_FLOWER_ROOT) flower
+flower_down:
+	$(MAKE) --directory=$(_FLOWER_ROOT) flower_down
