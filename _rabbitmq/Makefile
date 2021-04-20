@@ -6,6 +6,7 @@ rabbitmq:
 	@echo "container_name: $(RABBITMQ_CONTAINER_NAME)"
 	@echo "host: localhost:$(RABBITMQ_PORT)"
 	@echo "web: localhost:$(RABBITMQ_PORT_WEB)"
+	@echo "connected to network: $(RABBITMQ_NETWORK)"
 	@echo "username: $(RABBITMQ_USER)"
 	@echo "password: $(RABBITMQ_PASSWORD)"
 	@echo "-----------------------------"
