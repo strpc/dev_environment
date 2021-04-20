@@ -67,6 +67,9 @@ enter:
         make minio              ->      run Minio(S3):latest on port 9000
         make minio_down         ->      down Minio(S3)
 
+        make flower             ->      run Flower:latest on port 5555
+        make flower_down        ->      down Flower
+
         make logs c=mysql_dev   ->      show log in live
         make enter c=mysql_dev  ->      enter inside container
 ```
