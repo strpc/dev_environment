@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+    http:
+        image: kennethreitz/httpbin:latest
+        container_name: ${HTTP_CONTAINER_NAME}
+        restart: unless-stopped
+        ports:
+            - ${HTTP_PORT}:80

@@ -70,6 +70,9 @@ enter:
         make flower             ->      run Flower:latest on port 5555
         make flower_down        ->      down Flower
 
+        make http               ->      run httpbin:latest on port 8880
+        make http_down          ->      down httpbin
+
         make logs c=mysql_dev   ->      show log in live
         make enter c=mysql_dev  ->      enter inside container
 ```
