@@ -1,18 +1,14 @@
 version: '3.8'
 
 services:
-  redis-cluster:
-    build:
-      context: .
-      args:
-        redis_version: '6.0.8'
-        restart: unless-stopped
-    environment:
-     IP: ${REDIS_CLUSTER_IP}
-     SENTINEL: ${REDIS_USE_SENTINEL}
-     STANDALONE: ${REDIS_USE_STANDALONE}
-    hostname: server
-    container_name: ${REDIS_CLUSTER_CONTAINER_NAME}
+  redis_cluster:
+    image: grokzen/redis-cluster:${REDIS_CLUSTER_VERSION}
     ports:
-      - '7000-7050:7000-7050'
-      - '5000-5010:5000-5010'
+      - '7000-7005:7000-7005'
+    environment:
+      IP: 0.0.0.0
+    container_name: ${REDIS_CLUSTER_CONTAINER_NAME}
+
+networks:
+    default:
+        name: ${REDIS_BASIC_NETWORK}
